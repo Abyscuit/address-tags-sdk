@@ -16,6 +16,7 @@ export const getAddressInfo = async (
   try {
     validateParams(address, ipfsGateway);
     const ipfsPath = await getIPFSPath(address);
+    if (ipfsPath === "") return undefined; // Item not found
     return await getInfoFromIPFS(ipfsPath, ipfsGateway);
   } catch (error) {
     console.error("Error in getAddressInfo: ", error);
